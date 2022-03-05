@@ -11,8 +11,9 @@ notes:		null
 #include <syslog.h>
 
 // Variable DEFs
-#define ERR_MSG_TEST2 "test syslog entry using C lang program `syslog_tester.c`"
-const char * const ERR_MSG_TEST1 = "test syslog entry using C lang program `syslog_tester.c`";
+// decision reference: https://eklitzke.org/declaring-c-string-constants-the-right-way
+//#define ERR_MSG_TEST2 "test syslog entry using C lang program `syslog_tester.c`"
+const char ERR_MSG_TEST[] = "test syslog entry using C lang program `syslog_tester.c`";
 
 // int main program
 int main(void) {
@@ -20,7 +21,7 @@ int main(void) {
 	openlog("test", LOG_PID, LOG_LOCAL0);
 	
 	// write test message
-	syslog(LOG_ERR, ERR_MSG_TEST2);
+	syslog(LOG_ERR, ERR_MSG_TEST);
 
 	// cleanup: close syslog
 	closelog();
